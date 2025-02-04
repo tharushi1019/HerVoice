@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- App Logo -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/her_voice_logo"
+            android:layout_marginTop="40dp"
+        android:contentDescription="@string/app_logo" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:shadowColor="#504E4E"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="with"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Email Input -->
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Enter Email"
+            android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="8dp"
+        android:padding="12dp"
+        android:background="@drawable/email_edit_text"
+        android:layout_marginBottom="16dp" />
+
+        <!-- Sign In Button -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="24sp"
+            android:padding="8dp"
+            android:backgroundTint="@color/dark_pink"
+            android:textColor="#FFF"
+            android:layout_marginTop="5dp"/>
+
+        <!-- OR Divider -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="______________ or ______________"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
+
+        <!-- Facebook Login Button -->
+        <Button
+            android:id="@+id/btn_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue with Facebook"
+            android:background="@drawable/facebook_bg"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_facebook"
+            android:drawablePadding="8dp"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Google Login Button -->
+        <Button
+            android:id="@+id/btn_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue with Google"
+            android:background="@drawable/google_bg"
+            android:textColor="@android:color/black"
+            android:drawableStart="@drawable/ic_google"
+            android:drawablePadding="8dp"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Apple Login Button -->
+        <Button
+            android:id="@+id/btn_apple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue with Apple"
+            android:background="@drawable/apple_bg"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_apple"
+            android:drawablePadding="8dp"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- footer -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="HerVoice©2025"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@drawable/ic_logo"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+</ScrollView>

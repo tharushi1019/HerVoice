@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/layout_bg_2">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="Add Trusted Contact"
+            android:textAlignment="center"
+            android:textColor="@color/dark_pink"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <!-- Name EditText -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:layout_marginBottom="5dp"
+            android:shadowColor="#504E4E"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"/>
+
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Phone Number EditText -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number:"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:layout_marginBottom="5dp"
+            android:shadowColor="#504E4E"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"/>
+
+        <EditText
+            android:id="@+id/phone_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Relationship Spinner -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Relationship:"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:layout_marginBottom="5dp"
+            android:shadowColor="#504E4E"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"/>
+
+        <Spinner
+            android:id="@+id/relationship_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="20dp"
+            android:padding="12dp" />
+
+        <!-- SMS Alert Switch -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:padding="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="SMS Alert"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/light_green"
+                android:shadowColor="#504E4E"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="10"/>
+            <Switch
+                android:id="@+id/sms_alert_switch"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:buttonTint="#4CAF50"
+                android:checked="true"
+                android:drawableTint="#4CAF50"
+                android:thumbTint="#1AA617"
+                tools:checked="true"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+
+        <!-- Save Button -->
+
+        <!-- footer -->
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
+            android:text="Save"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="HerVoice©2025"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_logo"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+</ScrollView>
