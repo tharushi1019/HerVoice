@@ -14,8 +14,8 @@
 
         <!-- App Logo -->
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/her_voice_logo"
             android:layout_marginTop="40dp"
         android:contentDescription="@string/app_logo" />
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:textSize="38sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:textColor="@android:color/white"
             android:shadowColor="#504E4E"
@@ -53,11 +53,25 @@
             android:drawableStart="@drawable/ic_email"
         android:drawablePadding="8dp"
         android:padding="12dp"
-        android:background="@drawable/email_edit_text"
+        android:background="@drawable/login_edit_text"
         android:layout_marginBottom="16dp" />
+
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Enter Password"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="8dp"
+            android:padding="12dp"
+            android:background="@drawable/login_edit_text"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword"/>
 
         <!-- Sign In Button -->
         <Button
+            android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
@@ -104,15 +118,15 @@
             android:padding="12dp"
             android:layout_marginBottom="8dp" />
 
-        <!-- Apple Login Button -->
+        <!-- Microsoft Login Button -->
         <Button
-            android:id="@+id/btn_apple"
+            android:id="@+id/btn_microsoft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Continue with Apple"
-            android:background="@drawable/apple_bg"
-            android:textColor="@android:color/white"
-            android:drawableStart="@drawable/ic_apple"
+            android:text="Continue with Microsoft"
+            android:background="@drawable/microsoft_bg"
+            android:textColor="@android:color/black"
+            android:drawableStart="@drawable/ic_microsoft"
             android:drawablePadding="8dp"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />

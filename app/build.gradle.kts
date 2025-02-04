@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,9 +41,14 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.core.ktx)
+    implementation(libs.firebase.firestore)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("org.osmdroid:osmdroid-android:6.1.11")
+    implementation(libs.osmdroid)
+    implementation(platform(libs.firebase.bom)) // Firebase BOM
+    implementation(libs.firebase.auth) // Firebase Authentication
+    implementation(libs.firebase.database) // Firebase Database
 
 }

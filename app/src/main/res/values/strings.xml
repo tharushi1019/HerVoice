@@ -2,4 +2,18 @@
     <string name="app_name">HerVoice</string>
     <string name="app_logo">App Logo</string>
     <string name="description">Image Button</string>
+    <string name="log_out">Log out</string>
+    <string name="your_emergency_contacts">Your Emergency Contacts</string>
+    <string name="contact_name_1">Contact Name 1</string>
+    <string name="contact_name_2">Contact Name 2</string>
+    <string name="contact_name_3">Contact Name 3</string>
+    <string name="contact_name_4">Contact Name 4</string>
+    <string name="contact_name_5">Contact Name 5</string>
+    <string name="hervoice_2025">HerVoice©2025</string>
+    <string-array name="relationship_options">
+        <item>Family</item>
+        <item>Friend</item>
+        <item>Colleague</item>
+        <item>Other</item>
+    </string-array>
 </resources>
