@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/yourImageButton"
+            android:layout_width="268dp"
+            android:layout_height="206dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description"
+            android:scaleType="centerInside"
+            android:src="@drawable/alert_icon" />
+    </RelativeLayout>
+
+    <!-- Contacts List -->
+
+    <LinearLayout
+        android:layout_width="369dp"
+        android:layout_height="445dp"
+        android:background="@drawable/layout_bg"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Your Emergency Contacts"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <!-- First Contact -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:paddingHorizontal="8dp">
+
+                <TextView
+                    android:id="@+id/contact_name_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/contact_bg"
+                    android:hint="Contact Name 1"
+                    android:padding="8dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/contact_phone_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/phone_icon"
+                    app:tint="@android:color/white" />
+
+                <ImageView
+                    android:id="@+id/contact_email_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/email_icon"
+                    app:tint="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Second Contact -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:paddingHorizontal="8dp">
+
+                <TextView
+                    android:id="@+id/contact_name_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/contact_bg"
+                    android:hint="Contact Name 2"
+                    android:padding="8dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/contact_phone_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/phone_icon"
+                    app:tint="@android:color/white" />
+
+                <ImageView
+                    android:id="@+id/contact_email_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/email_icon"
+                    app:tint="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Third Contact -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:paddingHorizontal="8dp">
+
+                <TextView
+                    android:id="@+id/contact_name_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/contact_bg"
+                    android:hint="Contact Name 3"
+                    android:padding="8dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/contact_phone_3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/phone_icon"
+                    app:tint="@android:color/white" />
+
+                <ImageView
+                    android:id="@+id/contact_email_3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/email_icon"
+                    app:tint="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Fourth Contact -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:paddingHorizontal="8dp">
+
+                <TextView
+                    android:id="@+id/contact_name_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/contact_bg"
+                    android:hint="Contact Name 4"
+                    android:padding="8dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/contact_phone_4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/phone_icon"
+                    app:tint="@android:color/white" />
+
+                <ImageView
+                    android:id="@+id/contact_email_4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/icon_bg"
+                    android:padding="8dp"
+                    android:src="@drawable/email_icon"
+                    app:tint="@android:color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/add_btn"
+            android:paddingHorizontal="40dp"
+            android:text="Add Contact"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_logo"
+        android:text="HerVoice©2025"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+</LinearLayout>
