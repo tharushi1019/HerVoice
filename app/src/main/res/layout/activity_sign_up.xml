@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg"
     android:padding="16dp">
 
@@ -9,20 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_gravity="center">
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/her_voice_logo" />
+            android:src="@drawable/her_voice_logo"
+            android:contentDescription="@string/app_logo"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Sign Up"
+            android:text="@string/sign_up_1"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -37,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:text="Create your account to start your journey with us."
+            android:text="@string/create_your_account_to_start_your_journey_with_us"
             android:textColor="@color/dark_pink"
             android:textSize="16sp"
             android:textStyle="bold|italic" />
@@ -46,58 +49,65 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="@string/name_1"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="20sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
             android:background="@drawable/field_label"/>
 
         <EditText
             android:id="@+id/input_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
+            android:layout_height="48dp"
+            android:hint="@string/name"
             android:background="@drawable/edit_text_bg"
             android:padding="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:inputType="text"/>
 
         <!-- Email -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/email_2"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="20sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
             android:background="@drawable/field_label"/>
 
         <EditText
             android:id="@+id/input_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
+            android:layout_height="48dp"
+            android:hint="@string/email"
+            android:autofillHints="emailAddress"
             android:background="@drawable/edit_text_bg"
             android:padding="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:inputType="textEmailAddress"/>
 
         <!-- Phone Number -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone"
+            android:text="@string/phone"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="20sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
             android:background="@drawable/field_label"/>
 
         <EditText
             android:id="@+id/input_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
+            android:layout_height="48dp"
+            android:inputType="phone"
+            android:hint="@string/phone_number"
             android:background="@drawable/edit_text_bg"
             android:padding="10dp"
             android:layout_marginBottom="10dp"/>
@@ -106,18 +116,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="@string/password"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="20sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
             android:background="@drawable/field_label"/>
 
         <EditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
+            android:layout_height="48dp"
+            android:hint="@string/password_1"
             android:inputType="textPassword"
             android:background="@drawable/edit_text_bg"
             android:padding="10dp"
@@ -127,18 +138,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm Password"
+            android:text="@string/confirm_password_1"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="20sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
             android:background="@drawable/field_label"/>
 
         <EditText
             android:id="@+id/input_confirm_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:layout_height="48dp"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
             android:background="@drawable/edit_text_bg"
             android:padding="10dp"
@@ -147,15 +159,15 @@
         <!-- Sign Up -->
         <Button
             android:id="@+id/btn_signup"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textSize="24dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:background="@drawable/signup_btn"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/dark_pink"
+            android:padding="8dp"
+            android:text="@string/sign_up_2"
             android:textColor="#FFF"
-            android:layout_marginTop="5dp" />
+            android:textSize="24sp"
+            app:cornerRadius="30dp" />
 
         <!-- Sign In -->
         <LinearLayout
@@ -169,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Already have an account? "
+                android:text="@string/already_have_an_account"
                 android:textStyle="italic"
                 android:textColor="@color/dark_pink"
                 android:textSize="18sp" />
@@ -178,7 +190,7 @@
                 android:id="@+id/tvSignInRedirect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign In"
+                android:text="@string/sign_in_1"
                 android:textColor="@color/dark_pink"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -188,10 +200,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="HerVoice©2025"
+            android:text="@string/hervoice_2025"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_logo"
+            app:drawableStartCompat="@drawable/ic_logo"
             android:textColor="@color/black" />
 
     </LinearLayout>

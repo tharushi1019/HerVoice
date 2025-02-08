@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
             android:drawableEnd="@drawable/ic_alert_bell"
-            android:text="Send Alert"
+            android:text="@string/send_alert"
             android:textStyle="bold"
             android:textSize="24sp"
             android:paddingHorizontal="30dp"

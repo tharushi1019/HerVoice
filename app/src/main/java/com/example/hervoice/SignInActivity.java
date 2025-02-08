@@ -19,7 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignInActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
-    private Button btnSignIn, btnGoogle, btnFacebook, btnMicrosoft;
+    private Button btnSignIn;
+
+    private TextView tvSignUpRedirect;
     private FirebaseAuth mAuth;
 
     @Override
@@ -34,27 +36,18 @@ public class SignInActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnSignIn = findViewById(R.id.btn_sign_in);
-        btnGoogle = findViewById(R.id.btn_google);
-        btnFacebook = findViewById(R.id.btn_facebook);
-        btnMicrosoft = findViewById(R.id.btn_microsoft);
+        tvSignUpRedirect = findViewById(R.id.tvSignUpRedirect);
 
         // Sign-In Button Click Listener
         btnSignIn.setOnClickListener(view -> signInUser());
 
-        // Google Sign-In (To be implemented)
-        btnGoogle.setOnClickListener(view -> {
-            Toast.makeText(SignInActivity.this, "Google Sign-In Coming Soon!", Toast.LENGTH_SHORT).show();
+        // Redirect to Sign Up page
+        tvSignUpRedirect.setOnClickListener(view -> {
+            Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        // Facebook Sign-In (To be implemented)
-        btnFacebook.setOnClickListener(view -> {
-            Toast.makeText(SignInActivity.this, "Facebook Sign-In Coming Soon!", Toast.LENGTH_SHORT).show();
-        });
-
-        // Microsoft Sign-In (To be implemented)
-        btnMicrosoft.setOnClickListener(view -> {
-            Toast.makeText(SignInActivity.this, "Microsoft Sign-In Coming Soon!", Toast.LENGTH_SHORT).show();
-        });
     }
 
     private void signInUser() {

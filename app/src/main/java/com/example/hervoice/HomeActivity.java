@@ -81,7 +81,7 @@ public class HomeActivity extends Activity {
 
         // Logout button redirects to SignUpActivity
         logoutButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomeActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
             startActivity(intent);
             finish();
         });

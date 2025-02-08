@@ -169,4 +169,11 @@ public class SendAlertActivity extends Activity {
         }
     }
 
+    public MapView getMapView() {
+        return mapView;
+    }
+
+    public void setMapView(MapView mapView) {
+        this.mapView = mapView;
+    }
 }

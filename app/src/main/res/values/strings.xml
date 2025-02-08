@@ -10,6 +10,32 @@
     <string name="contact_name_4">Contact Name 4</string>
     <string name="contact_name_5">Contact Name 5</string>
     <string name="hervoice_2025">HerVoice©2025</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_microsoft">Continue with Microsoft</string>
+    <string name="sign_in">Sign In</string>
+    <string name="enter_password"> Enter Password</string>
+    <string name="or">______________ or ______________</string>
+    <string name="enter_Email"> Enter Email</string>
+    <string name="forget_your_password">Forget Your Password</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
+    <string name="sign_up_2">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="email_2">Email</string>
+    <string name="sign_up_1">Sign Up</string>
+    <string name="create_your_account_to_start_your_journey_with_us">Create your account to start your journey with us.</string>
+    <string name="name_1">Name</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="password_1">Password</string>
+    <string name="confirm_password_1">Confirm Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in_1">Sign In</string>
+    <string name="send_alert">Send Alert</string>
+    <string name="save">Save</string>
     <string-array name="relationship_options">
         <item>Family</item>
         <item>Friend</item>
