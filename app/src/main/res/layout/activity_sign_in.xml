@@ -1,131 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:clickable="true"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <!-- App Logo -->
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/her_voice_logo"
-            android:layout_marginTop="40dp"
-        android:contentDescription="@string/app_logo" />
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/her_voice_logo" />
 
         <!-- Title -->
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:textSize="38sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
             android:shadowColor="#504E4E"
             android:shadowDx="5"
             android:shadowDy="5"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:text="Sign In"
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <!-- Subtitle -->
         <TextView
             android:id="@+id/tv_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="with"
-            android:textSize="20sp"
             android:textColor="@android:color/black"
-            android:layout_marginBottom="16dp" />
+            android:textSize="20sp" />
 
         <!-- Email Input -->
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Enter Email"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/login_edit_text"
             android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="8dp"
-        android:padding="12dp"
-        android:background="@drawable/email_edit_text"
-        android:layout_marginBottom="16dp" />
+            android:drawablePadding="8dp"
+            android:hint="@string/enter_Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
-        <!-- Sign In Button -->
-        <Button
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:textSize="24sp"
-            android:padding="8dp"
-            android:backgroundTint="@color/dark_pink"
-            android:textColor="#FFF"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/login_edit_text"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="8dp"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            tools:ignore="PrivateResource" />
 
-        <!-- OR Divider -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="______________ or ______________"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center" />
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/forget_your_password"
+            android:textSize="15sp" />
 
-        <!-- Facebook Login Button -->
+        <!-- Sign In Button -->
         <Button
-            android:id="@+id/btn_facebook"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_sign_in"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:text="Continue with Facebook"
-            android:background="@drawable/facebook_bg"
-            android:textColor="@android:color/white"
-            android:drawableStart="@drawable/ic_facebook"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/dark_pink"
+            android:padding="8dp"
+            android:text="@string/sign_in"
+            android:textColor="#FFF"
+            android:textSize="24sp"
+            app:cornerRadius="30dp" />
 
-        <!-- Google Login Button -->
-        <Button
-            android:id="@+id/btn_google"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvSignUpRedirect"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Continue with Google"
-            android:background="@drawable/google_bg"
-            android:textColor="@android:color/black"
-            android:drawableStart="@drawable/ic_google"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Apple Login Button -->
-        <Button
-            android:id="@+id/btn_apple"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Continue with Apple"
-            android:background="@drawable/apple_bg"
-            android:textColor="@android:color/white"
-            android:drawableStart="@drawable/ic_apple"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/pink"
+            android:textStyle="bold"
+            android:text="@string/don_t_have_an_account_sign_up"
+            android:layout_margin="15dp"
+            android:textSize="18sp" />
 
         <!-- footer -->
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="HerVoice©2025"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:text="@string/hervoice_2025"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:drawableLeft="@drawable/ic_logo"
-            android:textColor="@color/black" />
+            android:layout_gravity="center" />
 
     </LinearLayout>
 </ScrollView>

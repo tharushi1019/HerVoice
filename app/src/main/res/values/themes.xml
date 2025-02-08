@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!-- To remove default button tint -->
+        <item name="android:colorButtonNormal">@null</item>
+        <item name="android:buttonStyle">@style/CustomButtonStyle</item>
     </style>
 </resources>
