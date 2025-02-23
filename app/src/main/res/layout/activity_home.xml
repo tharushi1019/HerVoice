@@ -12,9 +12,10 @@
         android:id="@+id/logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
+        android:layout_gravity="end"
         android:background="@drawable/logout_bg"
         android:text="@string/log_out"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="@color/dark_pink"/>
 
