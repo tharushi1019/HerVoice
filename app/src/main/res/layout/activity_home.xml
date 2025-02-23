@@ -103,15 +103,6 @@
                     android:src="@drawable/email_icon"
                     app:tint="@android:color/white" />
 
-                <ImageButton
-                    android:id="@+id/edit_contact_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@android:color/white"
-                    android:background="@color/Invisible"/>
             </LinearLayout>
 
             <!-- Second Contact -->
@@ -157,15 +148,6 @@
                     android:src="@drawable/email_icon"
                     app:tint="@android:color/white" />
 
-                <ImageButton
-                    android:id="@+id/edit_contact_2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@android:color/white"
-                    android:background="@color/Invisible" />
             </LinearLayout>
 
             <!-- Third Contact -->
@@ -211,15 +193,6 @@
                     android:src="@drawable/email_icon"
                     app:tint="@android:color/white" />
 
-                <ImageButton
-                    android:id="@+id/edit_contact_3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@android:color/white"
-                    android:background="@color/Invisible" />
             </LinearLayout>
 
             <!-- Fourth Contact -->
@@ -265,15 +238,6 @@
                     android:src="@drawable/email_icon"
                     app:tint="@android:color/white" />
 
-                <ImageButton
-                    android:id="@+id/edit_contact_4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@android:color/white"
-                    android:background="@color/Invisible" />
             </LinearLayout>
 
             <!-- Fourth Contact -->
@@ -319,15 +283,6 @@
                     android:src="@drawable/email_icon"
                     app:tint="@android:color/white" />
 
-                <ImageButton
-                    android:id="@+id/edit_contact_5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@android:color/white"
-                    android:background="@color/Invisible" />
             </LinearLayout>
 
         </LinearLayout>

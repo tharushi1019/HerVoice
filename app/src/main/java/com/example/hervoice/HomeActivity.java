@@ -1,27 +1,43 @@
 package com.example.hervoice;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends AppCompatActivity {
 
     private TextView contactName1, contactName2, contactName3, contactName4, contactName5;
-    private ImageButton sendAlertButton, editContact1, editContact2, editContact3, editContact4, editContact5;
-    private ImageButton phone1, phone2, phone3, phone4, phone5;
-    private ImageButton message1, message2, message3, message4, message5;
-    private Button logoutButton;
+
+    private FirebaseAuth mAuth;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Initialize Firebase Authentication
+        mAuth = FirebaseAuth.getInstance();
+
+        // Initialize SharedPreferences for session management
+        sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+
+        // Check if the user is logged in
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        if (!isLoggedIn) {
+            // If not logged in, redirect to SignInActivity
+            Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+            startActivity(intent);
+            finish();
+            return; // Stop further execution
+        }
 
         // Initializing views
         contactName1 = findViewById(R.id.contact_name_1);
@@ -30,27 +46,21 @@ public class HomeActivity extends Activity {
         contactName4 = findViewById(R.id.contact_name_4);
         contactName5 = findViewById(R.id.contact_name_5);
 
-        sendAlertButton = findViewById(R.id.send_alert_button);
+        ImageButton sendAlertButton = findViewById(R.id.send_alert_button);
 
-        editContact1 = findViewById(R.id.edit_contact_1);
-        editContact2 = findViewById(R.id.edit_contact_2);
-        editContact3 = findViewById(R.id.edit_contact_3);
-        editContact4 = findViewById(R.id.edit_contact_4);
-        editContact5 = findViewById(R.id.edit_contact_5);
+        ImageButton phone1 = findViewById(R.id.contact_phone_1);
+        ImageButton phone2 = findViewById(R.id.contact_phone_2);
+        ImageButton phone3 = findViewById(R.id.contact_phone_3);
+        ImageButton phone4 = findViewById(R.id.contact_phone_4);
+        ImageButton phone5 = findViewById(R.id.contact_phone_5);
 
-        phone1 = findViewById(R.id.contact_phone_1);
-        phone2 = findViewById(R.id.contact_phone_2);
-        phone3 = findViewById(R.id.contact_phone_3);
-        phone4 = findViewById(R.id.contact_phone_4);
-        phone5 = findViewById(R.id.contact_phone_5);
+        ImageButton message1 = findViewById(R.id.contact_message_1);
+        ImageButton message2 = findViewById(R.id.contact_message_2);
+        ImageButton message3 = findViewById(R.id.contact_message_3);
+        ImageButton message4 = findViewById(R.id.contact_message_4);
+        ImageButton message5 = findViewById(R.id.contact_message_5);
 
-        message1 = findViewById(R.id.contact_message_1);
-        message2 = findViewById(R.id.contact_message_2);
-        message3 = findViewById(R.id.contact_message_3);
-        message4 = findViewById(R.id.contact_message_4);
-        message5 = findViewById(R.id.contact_message_5);
-
-        logoutButton = findViewById(R.id.logout_button);
+        Button logoutButton = findViewById(R.id.logout_button);
 
         // Send alert button redirects to SendAlertActivity
         sendAlertButton.setOnClickListener(view -> {
@@ -59,11 +69,11 @@ public class HomeActivity extends Activity {
         });
 
         // Edit contact buttons redirect to AddContactActivity
-        editContact1.setOnClickListener(view -> redirectToAddContactActivity(1));
-        editContact2.setOnClickListener(view -> redirectToAddContactActivity(2));
-        editContact3.setOnClickListener(view -> redirectToAddContactActivity(3));
-        editContact4.setOnClickListener(view -> redirectToAddContactActivity(4));
-        editContact5.setOnClickListener(view -> redirectToAddContactActivity(5));
+        contactName1.setOnClickListener(view -> redirectToAddContactActivity(1));
+        contactName2.setOnClickListener(view -> redirectToAddContactActivity(2));
+        contactName3.setOnClickListener(view -> redirectToAddContactActivity(3));
+        contactName4.setOnClickListener(view -> redirectToAddContactActivity(4));
+        contactName5.setOnClickListener(view -> redirectToAddContactActivity(5));
 
         // Phone buttons initiate a call
         phone1.setOnClickListener(view -> dialPhone(contactName1.getText().toString()));
@@ -79,8 +89,17 @@ public class HomeActivity extends Activity {
         message4.setOnClickListener(view -> sendMessage(contactName4.getText().toString()));
         message5.setOnClickListener(view -> sendMessage(contactName5.getText().toString()));
 
-        // Logout button redirects to SignUpActivity
+        // Logout button functionality
         logoutButton.setOnClickListener(view -> {
+            // Clear session
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isLoggedIn", false);
+            editor.apply();
+
+            // Sign out from Firebase
+            mAuth.signOut();
+
+            // Redirect to SignInActivity
             Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
             startActivity(intent);
             finish();
@@ -126,5 +145,4 @@ public class HomeActivity extends Activity {
             Toast.makeText(this, "Message functionality is not available for " + contactName, Toast.LENGTH_SHORT).show();
         }
     }
-
 }

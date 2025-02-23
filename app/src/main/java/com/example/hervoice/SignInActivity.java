@@ -1,6 +1,7 @@
 package com.example.hervoice;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,21 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnSignIn;
-
     private TextView tvSignUpRedirect;
     private FirebaseAuth mAuth;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +27,16 @@ public class SignInActivity extends AppCompatActivity {
 
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
+
+        // Initialize SharedPreferences for session management
+        sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+
+        // Check if the user is already logged in
+        if (isUserLoggedIn()) {
+            // If logged in, move to HomeActivity
+            startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+            finish();
+        }
 
         // Initialize UI Elements
         etEmail = findViewById(R.id.et_email);
@@ -47,7 +53,6 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
     }
 
     private void signInUser() {
@@ -66,6 +71,9 @@ public class SignInActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        // Save session information (user logged in)
+                        saveUserSession(true);
+
                         Toast.makeText(SignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                         finish();
@@ -73,5 +81,15 @@ public class SignInActivity extends AppCompatActivity {
                         Toast.makeText(SignInActivity.this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void saveUserSession(boolean isLoggedIn) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", isLoggedIn); // Save login status
+        editor.apply();
+    }
+
+    private boolean isUserLoggedIn() {
+        return sharedPreferences.getBoolean("isLoggedIn", false); // Return login status
     }
 }
