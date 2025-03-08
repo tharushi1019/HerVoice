@@ -16,7 +16,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnSignIn;
-    private TextView tvSignUpRedirect;
+    private TextView tvSignUpRedirect, tvForgetPassword;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
 
@@ -43,6 +43,7 @@ public class SignInActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         btnSignIn = findViewById(R.id.btn_sign_in);
         tvSignUpRedirect = findViewById(R.id.tvSignUpRedirect);
+        tvForgetPassword = findViewById(R.id.forget_password); // Add this line
 
         // Sign-In Button Click Listener
         btnSignIn.setOnClickListener(view -> signInUser());
@@ -52,6 +53,16 @@ public class SignInActivity extends AppCompatActivity {
             Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        // Forgot Password Click Listener
+        tvForgetPassword.setOnClickListener(view -> {
+            String email = etEmail.getText().toString().trim();
+            if (TextUtils.isEmpty(email)) {
+                etEmail.setError("Enter your email");
+                return;
+            }
+            sendPasswordResetEmail(email);
         });
     }
 
@@ -79,6 +90,17 @@ public class SignInActivity extends AppCompatActivity {
                         finish();
                     } else {
                         Toast.makeText(SignInActivity.this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void sendPasswordResetEmail(String email) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignInActivity.this, "Password reset email sent!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SignInActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

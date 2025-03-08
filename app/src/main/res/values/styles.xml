@@ -5,4 +5,5 @@
         <item name="android:backgroundTint">@null</item>
         <item name="android:colorButtonNormal">@null</item>
     </style>
+    
 </resources>

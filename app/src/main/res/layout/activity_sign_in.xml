@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:clickable="true"
+    android:focusable="true"
     android:padding="16dp">
 
     <LinearLayout
@@ -31,8 +32,8 @@
             android:shadowDx="5"
             android:shadowDy="5"
             android:shadowRadius="10"
-            android:text="Sign In"
-            android:textColor="@android:color/white"
+            android:text="@string/_sign_in_"
+            android:textColor="#C51162"
             android:textSize="35sp"
             android:textStyle="bold" />
 
@@ -42,16 +43,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="with"
+            android:text="@string/with"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 
         <!-- Email Input -->
         <EditText
             android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="370dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="16dp"
+            android:autofillHints=""
             android:background="@drawable/login_edit_text"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="8dp"
@@ -59,32 +61,37 @@
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray" />
+            android:textColorHint="#757575"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <!-- Password Input -->
         <EditText
             android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="370dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/login_edit_text"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="8dp"
             android:hint="@string/enter_password"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:padding="12dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            tools:ignore="PrivateResource" />
+            android:textColorHint="#757575"
+            tools:ignore="PrivateResource,VisualLintTextFieldSize" />
 
         <TextView
+            android:id="@+id/forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="sans-serif-condensed-medium"
+            android:minHeight="48dp"
             android:text="@string/forget_your_password"
+            android:textColor="#141213"
             android:textSize="15sp" />
 
         <!-- Sign In Button -->
@@ -105,13 +112,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="15dp"
             android:clickable="true"
             android:focusable="true"
-            android:textColor="@color/pink"
-            android:textStyle="bold"
+            android:minHeight="48dp"
             android:text="@string/don_t_have_an_account_sign_up"
-            android:layout_margin="15dp"
-            android:textSize="18sp" />
+            android:textColor="#C51162"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <!-- footer -->
         <TextView
@@ -121,8 +129,8 @@
             android:text="@string/hervoice_2025"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_logo"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            app:drawableStartCompat="@drawable/ic_logo" />
 
     </LinearLayout>
 </ScrollView>

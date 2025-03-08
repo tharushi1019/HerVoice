@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,15 +26,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="@string/sign_up_1"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
             android:shadowColor="#504E4E"
             android:shadowDx="5"
             android:shadowDy="5"
             android:shadowRadius="10"
-            android:paddingHorizontal="10dp"/>
+            android:text="@string/sign_up_1"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,11 +63,14 @@
             android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="@string/name"
-            android:background="@drawable/edit_text_bg"
-            android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:inputType="text"/>
+            android:autofillHints=""
+            android:background="@drawable/edit_text_bg"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColorHint="@color/gray2"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
         <!-- Email -->
         <TextView
@@ -83,12 +88,14 @@
             android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="@string/email"
+            android:layout_marginBottom="10dp"
             android:autofillHints="emailAddress"
             android:background="@drawable/edit_text_bg"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:layout_marginBottom="10dp"
-            android:inputType="textEmailAddress"/>
+            android:textColorHint="@color/gray2"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
         <!-- Phone Number -->
         <TextView
@@ -106,11 +113,14 @@
             android:id="@+id/input_phone"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:inputType="phone"
-            android:hint="@string/phone_number"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/edit_text_bg"
+            android:hint="@string/phone_number"
+            android:importantForAutofill="no"
+            android:inputType="phone"
             android:padding="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:textColorHint="@color/gray2"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
         <!-- Password -->
         <TextView
@@ -128,11 +138,14 @@
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="@string/password_1"
-            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/edit_text_bg"
+            android:hint="@string/password_1"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
             android:padding="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:textColorHint="@color/gray2"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
         <!-- Confirm Password -->
         <TextView
@@ -150,11 +163,14 @@
             android:id="@+id/input_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_text_bg"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:background="@drawable/edit_text_bg"
             android:padding="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:textColorHint="@color/gray2"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
         <!-- Sign Up -->
         <Button
@@ -193,7 +209,8 @@
                 android:text="@string/sign_in_1"
                 android:textColor="@color/dark_pink"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
         </LinearLayout>
 
         <!-- footer -->

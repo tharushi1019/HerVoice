@@ -3,9 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Location Permissions -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Permission to send SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
+    <!-- Permission for accessing network state (if needed for location fetching) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -38,10 +52,6 @@
 
         <activity
             android:name=".AddContactActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".SendAlertActivity"
             android:exported="true" />
 
     </application>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contact_layout_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:paddingHorizontal="8dp">
+
+    <TextView
+        android:id="@+id/contact_name_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/contact_bg"
+        android:hint="@string/contact_name_1"
+        android:padding="8dp"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/contact_phone_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/icon_bg"
+        android:contentDescription="@string/dial_option_1"
+        android:padding="8dp"
+        android:src="@drawable/phone_icon"
+        app:tint="@android:color/white"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <ImageButton
+        android:id="@+id/contact_message_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/icon_bg_2"
+        android:contentDescription="@string/sms_alert_option_1"
+        android:padding="8dp"
+        android:src="@drawable/email_icon"
+        app:tint="@android:color/white"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+</LinearLayout>
