@@ -73,4 +73,6 @@
     <string name="delete_contact">Delete Contact</string>
     <string name="edit_contact">Edit Contact</string>
     <string name="refresh_contacts">refresh_contacts</string>
+    <string name="contacts">Contacts</string>
+    <string name="home">Home</string>
 </resources>

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 
@@ -57,10 +58,10 @@ public class AddContactActivity extends AppCompatActivity {
         relationshipSpinner.setAdapter(adapter);
 
         // Save button click event
-        saveButton.setOnClickListener(v -> saveContactToFirestore());
+        saveButton.setOnClickListener(v -> checkAndSaveContact());
     }
 
-    private void saveContactToFirestore() {
+    private void checkAndSaveContact() {
         String name = nameInput.getText().toString().trim();
         String phone = phoneInput.getText().toString().trim();
         String relationship = relationshipSpinner.getSelectedItem().toString();
@@ -82,8 +83,30 @@ public class AddContactActivity extends AppCompatActivity {
 
         // Disable save button to prevent multiple clicks
         saveButton.setEnabled(false);
-        saveButton.setText("Saving...");
+        saveButton.setText("Checking...");
 
+        // 🔥 **Step 1: Check if phone number already exists**
+        contactsRef.whereEqualTo("phone", phone).get()
+                .addOnSuccessListener(querySnapshot -> {
+                    if (!querySnapshot.isEmpty()) {
+                        // ❌ Phone number already exists → Show error message
+                        Toast.makeText(AddContactActivity.this, "This phone number is already saved!", Toast.LENGTH_SHORT).show();
+                        saveButton.setEnabled(true);
+                        saveButton.setText("Save");
+                    } else {
+                        // ✅ Phone number does not exist → Save the contact
+                        saveContactToFirestore(name, phone, relationship, smsAlertEnabled);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("AddContactActivity", "Error checking contact", e);
+                    Toast.makeText(AddContactActivity.this, "Error checking contact!", Toast.LENGTH_SHORT).show();
+                    saveButton.setEnabled(true);
+                    saveButton.setText("Save");
+                });
+    }
+
+    private void saveContactToFirestore(String name, String phone, String relationship, boolean smsAlertEnabled) {
         // Create a HashMap to store contact data
         HashMap<String, Object> contactMap = new HashMap<>();
         contactMap.put("name", name);

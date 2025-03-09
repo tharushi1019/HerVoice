@@ -15,10 +15,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
         android:text="@string/your_emergency_contacts"
+        android:textAlignment="center"
         android:textColor="@color/dark_pink"
         android:textSize="28sp"
-        android:textAlignment="center"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:drawableTopCompat="@drawable/contact" />
 
     <!-- Contacts List Container -->
     <LinearLayout
@@ -61,27 +62,13 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/refresh_contacts"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/icon_bg"
-        android:baselineAlignBottom="true"
-        android:contentDescription="@string/refresh_contacts"
-        android:padding="6dp"
-        android:src="@drawable/refresh_icon"
-        app:tint="@android:color/white"
-        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
-
     <Button
         android:id="@+id/add_contact_button"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/button_bg_2"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/add_contact"
         android:textSize="20sp"
         android:textStyle="bold" />
