@@ -1,7 +1,8 @@
 package com.example.hervoice;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,77 +11,104 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class AddContactActivity extends Activity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+
+public class AddContactActivity extends AppCompatActivity {
 
     private EditText nameInput, phoneInput;
     private Spinner relationshipSpinner;
     private Switch smsAlertSwitch;
     private Button saveButton;
-    private FirebaseDatabase database;
-    private DatabaseReference contactsRef;
+
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    private CollectionReference contactsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
 
-        // Initialize Firebase
-        database = FirebaseDatabase.getInstance();
-        contactsRef = database.getReference("contacts");
+        // Initialize Firebase instances
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        // Initialize views
+        // Reference to user's contacts collection
+        String userId = auth.getCurrentUser().getUid();
+        contactsRef = db.collection("users").document(userId).collection("contacts");
+
+        // Initialize UI components
         nameInput = findViewById(R.id.name_input);
         phoneInput = findViewById(R.id.phone_input);
         relationshipSpinner = findViewById(R.id.relationship_spinner);
         smsAlertSwitch = findViewById(R.id.sms_alert_switch);
         saveButton = findViewById(R.id.save_button);
 
-        // Populate the relationship Spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.relationship_options, android.R.layout.simple_spinner_item);
+        // Populate Spinner with relationship options
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.relationship_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         relationshipSpinner.setAdapter(adapter);
 
-        // Save button click listener
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveContact();
-            }
-        });
+        // Save button click event
+        saveButton.setOnClickListener(v -> saveContactToFirestore());
     }
 
-    // Method to save contact to Firebase
-    private void saveContact() {
-        // Get input values
+    private void saveContactToFirestore() {
         String name = nameInput.getText().toString().trim();
         String phone = phoneInput.getText().toString().trim();
         String relationship = relationshipSpinner.getSelectedItem().toString();
-        boolean smsAlert = smsAlertSwitch.isChecked();
+        boolean smsAlertEnabled = smsAlertSwitch.isChecked();
 
-        // Validate inputs
-        if (name.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(AddContactActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        // Validation checks
+        if (TextUtils.isEmpty(name)) {
+            nameInput.setError("Name is required!");
+            return;
+        }
+        if (TextUtils.isEmpty(phone)) {
+            phoneInput.setError("Phone number is required!");
+            return;
+        }
+        if (!isValidPhoneNumber(phone)) {
+            phoneInput.setError("Invalid phone number!");
             return;
         }
 
-        // Create a Contact object
-        String contactId = contactsRef.push().getKey();  // Generate unique ID for the contact
-        Contact newContact = new Contact(name, phone, relationship, smsAlert);
+        // Disable save button to prevent multiple clicks
+        saveButton.setEnabled(false);
+        saveButton.setText("Saving...");
 
-        // Save contact to Firebase
-        if (contactId != null) {
-            contactsRef.child(contactId).setValue(newContact).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
+        // Create a HashMap to store contact data
+        HashMap<String, Object> contactMap = new HashMap<>();
+        contactMap.put("name", name);
+        contactMap.put("phone", phone);
+        contactMap.put("relationship", relationship);
+        contactMap.put("smsAlertEnabled", smsAlertEnabled);
+
+        // Add contact to Firestore
+        contactsRef.add(contactMap)
+                .addOnSuccessListener(documentReference -> {
+                    // Success feedback
                     Toast.makeText(AddContactActivity.this, "Contact saved successfully!", Toast.LENGTH_SHORT).show();
-                    finish();  // Close the activity after saving
-                } else {
-                    Toast.makeText(AddContactActivity.this, "Failed to save contact", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+                    finish(); // Close the activity after saving
+                })
+                .addOnFailureListener(e -> {
+                    // Error feedback
+                    Log.e("AddContactActivity", "Failed to save contact", e);
+                    Toast.makeText(AddContactActivity.this, "Failed to save contact!", Toast.LENGTH_SHORT).show();
+                    saveButton.setEnabled(true); // Re-enable save button
+                    saveButton.setText("Save");
+                });
+    }
+
+    // Validates phone number (10 digits only)
+    private boolean isValidPhoneNumber(String phone) {
+        return phone.matches("\\d{10}"); // Change this if needed (e.g., for other phone formats)
     }
 }

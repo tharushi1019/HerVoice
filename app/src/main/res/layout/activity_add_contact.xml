@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +26,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:text="Add Trusted Contact"
+            android:text="@string/add_trusted_contact_"
             android:textAlignment="center"
             android:textColor="@color/dark_pink"
             android:textSize="30sp"
@@ -36,67 +37,74 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name:"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_marginBottom="5dp"
             android:shadowColor="#504E4E"
             android:shadowDx="5"
             android:shadowDy="5"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:text="@string/name_add_contact"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:autofillHints="True"
+            android:hint="@string/name_add_contact_"
             android:inputType="textPersonName"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray2"
             android:background="@drawable/edittext_background"
             android:padding="12dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <!-- Phone Number EditText -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone Number:"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_marginBottom="5dp"
             android:shadowColor="#504E4E"
             android:shadowDx="5"
             android:shadowDy="5"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:text="@string/phone_number_add_contact"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/phone_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number_"
             android:inputType="phone"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:autofillHints="phone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray2"
             android:background="@drawable/edittext_background"
             android:padding="12dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <!-- Relationship Spinner -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Relationship:"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_marginBottom="5dp"
             android:shadowColor="#504E4E"
             android:shadowDx="5"
             android:shadowDy="5"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:text="@string/relationship_add_contact"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
         <Spinner
             android:id="@+id/relationship_spinner"
@@ -119,14 +127,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="SMS Alert"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/light_green"
                 android:shadowColor="#504E4E"
                 android:shadowDx="5"
                 android:shadowDy="5"
-                android:shadowRadius="10"/>
+                android:shadowRadius="10"
+                android:text="@string/sms_alert_add_contact"
+                android:textColor="@color/light_green"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
             <Switch
                 android:id="@+id/sms_alert_switch"
                 android:layout_width="60dp"
@@ -155,16 +165,17 @@
             android:text="@string/save"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:ignore="VisualLintButtonSize" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="HerVoice©2025"
+            android:text="@string/hervoice_2025_add_contact"
             android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_logo"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            app:drawableLeftCompat="@drawable/ic_logo" />
 
     </LinearLayout>
 </ScrollView>

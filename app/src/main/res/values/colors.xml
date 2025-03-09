@@ -15,5 +15,7 @@
     <color name="light_green">#DFFFE5</color>
     <color name="gray">#52000000</color>
     <color name="Invisible">#78E78DAD</color>
+    <color name="Dark_green">#007500</color>
+    <color name="gray2">#242424</color>
 
 </resources>
