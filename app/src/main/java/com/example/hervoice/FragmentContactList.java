@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +28,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,7 @@ public class FragmentContactList extends Fragment {
     private final List<Contact> contactList = new ArrayList<>();
     private static final int MAX_CONTACTS = 5; // Limit to 5 contacts
     private FusedLocationProviderClient fusedLocationClient;
+    private ListenerRegistration contactListener; // Firestore real-time listener
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +59,6 @@ public class FragmentContactList extends Fragment {
         noContactsText = rootView.findViewById(R.id.no_contacts_text);
         progressBar = rootView.findViewById(R.id.progress_bar_1);
         Button addContactButton = rootView.findViewById(R.id.add_contact_button);
-        ImageButton refreshButton = rootView.findViewById(R.id.refresh_contacts); // Refresh button
 
         // Initialize Firebase and location services
         auth = FirebaseAuth.getInstance();
@@ -71,14 +74,8 @@ public class FragmentContactList extends Fragment {
                 this::onEditClick);
         contactsRecyclerView.setAdapter(contactAdapter);
 
-        // Fetch contacts
-        fetchContactsFromFirestore();
-
-        // Refresh button functionality
-        refreshButton.setOnClickListener(v -> {
-            Toast.makeText(getActivity(), "Refreshing contacts...", Toast.LENGTH_SHORT).show();
-            fetchContactsFromFirestore(); // Reload contacts from Firestore
-        });
+        // Fetch contacts in real-time
+        listenForContactUpdates();
 
         // Add Contact Button
         addContactButton.setOnClickListener(view -> {
@@ -92,30 +89,40 @@ public class FragmentContactList extends Fragment {
         return rootView;
     }
 
-    private void fetchContactsFromFirestore() {
+    // 🔥 Real-time Firestore Listener to Auto-Update Contact List
+    private void listenForContactUpdates() {
         FirebaseUser user = auth.getCurrentUser();
         if (user == null) {
             Toast.makeText(getActivity(), "User not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
-
         CollectionReference contactsRef = db.collection("users").document(user.getUid()).collection("contacts");
-        contactsRef.get().addOnCompleteListener(task -> {
-            progressBar.setVisibility(View.GONE);
-            if (task.isSuccessful()) {
-                contactList.clear();
-                for (DocumentSnapshot document : task.getResult()) {
-                    Contact contact = document.toObject(Contact.class);
-                    if (contact != null) {
-                        contact.setContactId(document.getId());
-                        contactList.add(contact);
-                    }
+
+        // Remove previous listener to avoid duplicates
+        if (contactListener != null) {
+            contactListener.remove();
+        }
+
+        contactListener = contactsRef.orderBy("name").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot querySnapshot, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Toast.makeText(getActivity(), "Error listening for contact changes", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                updateUI();
-            } else {
-                Toast.makeText(getActivity(), "Error getting contacts", Toast.LENGTH_SHORT).show();
+
+                if (querySnapshot != null) {
+                    contactList.clear(); // Clear existing contacts
+                    for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                        Contact contact = document.toObject(Contact.class);
+                        if (contact != null) {
+                            contact.setContactId(document.getId());
+                            contactList.add(contact);
+                        }
+                    }
+                    updateUI();
+                }
             }
         });
     }
@@ -136,48 +143,36 @@ public class FragmentContactList extends Fragment {
         FirebaseUser user = auth.getCurrentUser();
         if (user == null) return;
 
-        // Remove contact from Firestore
         CollectionReference contactsRef = db.collection("users").document(user.getUid()).collection("contacts");
         contactsRef.document(contact.getContactId()).delete()
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getActivity(), "Contact deleted", Toast.LENGTH_SHORT).show();
-                    fetchContactsFromFirestore(); // Refresh contacts list after deletion
                 })
-                .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to delete contact", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e ->
+                        Toast.makeText(getActivity(), "Failed to delete contact", Toast.LENGTH_SHORT).show());
     }
 
     private void dialContact(Contact contact) {
         String phoneNumber = contact.getPhone();
-
-        // Check if the app has CALL_PHONE permission
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
                 == PackageManager.PERMISSION_GRANTED) {
-
-            // If permission is granted, place the call directly
             Intent intent = new Intent(Intent.ACTION_CALL);
             intent.setData(Uri.parse("tel:" + phoneNumber));
             startActivity(intent);
         } else {
-            // If permission is not granted, request permission
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{Manifest.permission.CALL_PHONE}, 1);
         }
     }
 
     private void sendSMS(Contact contact) {
-        // Request location permissions if not granted
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-
-            // Get the user's current location
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(location -> {
                         if (location != null) {
-                            // Generate the emergency message with the location
                             String message = "Emergency! My location is: " + location.getLatitude() + ", " + location.getLongitude();
                             String phoneNumber = contact.getPhone();
-
-                            // Use SmsManager to send the SMS
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(phoneNumber, null, message, null, null);
                             Toast.makeText(getActivity(), "Emergency message sent!", Toast.LENGTH_SHORT).show();
@@ -186,14 +181,11 @@ public class FragmentContactList extends Fragment {
                         }
                     });
         } else {
-            // Request location permission
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2);
         }
     }
 
-
-    // Handle the edit button click
     private void onEditClick(Contact contact) {
         if (contact == null || contact.getContactId() == null || contact.getContactId().isEmpty()) {
             Toast.makeText(getActivity(), "Error: Contact not found", Toast.LENGTH_SHORT).show();
@@ -201,7 +193,16 @@ public class FragmentContactList extends Fragment {
         }
 
         Intent intent = new Intent(getActivity(), EditContactActivity.class);
-        intent.putExtra("contact_id", contact.getContactId());  // Ensure contactId is passed
+        intent.putExtra("contact_id", contact.getContactId());
         startActivity(intent);
+    }
+
+    // 🔥 Stop listening when fragment is destroyed (to prevent memory leaks)
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (contactListener != null) {
+            contactListener.remove();
+        }
     }
 }
