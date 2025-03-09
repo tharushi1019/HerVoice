@@ -50,4 +50,5 @@ dependencies {
     implementation(platform(libs.firebase.bom)) // Firebase BOM
     implementation(libs.firebase.auth) // Firebase Authentication
     implementation(libs.firebase.database) // Firebase Database
+    implementation(libs.viewpager2) // For ViewPager2
 }

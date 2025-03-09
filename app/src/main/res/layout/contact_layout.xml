@@ -9,8 +9,7 @@
     android:layout_marginBottom="5dp"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="8dp"
-    android:paddingHorizontal="8dp">
+    android:padding="6dp" >
 
     <TextView
         android:id="@+id/contact_name_1"
@@ -19,8 +18,8 @@
         android:layout_weight="1"
         android:background="@drawable/contact_bg"
         android:hint="@string/contact_name_1"
-        android:padding="8dp"
-        android:textAlignment="textStart"
+        android:padding="6dp"
+        android:gravity="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textSize="24sp"
@@ -28,26 +27,38 @@
 
     <ImageButton
         android:id="@+id/contact_phone_1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/icon_bg"
         android:contentDescription="@string/dial_option_1"
-        android:padding="8dp"
+        android:padding="6dp"
         android:src="@drawable/phone_icon"
         app:tint="@android:color/white"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/contact_message_1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/icon_bg_2"
         android:contentDescription="@string/sms_alert_option_1"
-        android:padding="8dp"
+        android:padding="6dp"
         android:src="@drawable/email_icon"
         app:tint="@android:color/white"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/contact_delete_1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/icon_bg_3"
+        android:contentDescription="@string/delete_contact"
+        android:padding="6dp"
+        android:src="@drawable/delete_icon"
+        app:tint="@android:color/white"
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
 </LinearLayout>
