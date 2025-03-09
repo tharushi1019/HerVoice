@@ -11,6 +11,7 @@ firebase-bom = "33.8.0"
 firebase-auth = "23.1.0"
 firebaseFirestore = "25.1.1"
 playServicesLocation = "21.3.0"
+viewpager2 = "1.1.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -25,10 +26,11 @@ firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "f
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database"}
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.10" }
 
 
 
