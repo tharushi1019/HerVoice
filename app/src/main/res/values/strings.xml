@@ -75,4 +75,7 @@
     <string name="refresh_contacts">refresh_contacts</string>
     <string name="contacts">Contacts</string>
     <string name="home">Home</string>
+    <string name="refresh_location">Refresh Location</string>
+    <string name="refresh">refresh</string>
+    <string name="saving">Saving...</string>
 </resources>

@@ -8,8 +8,7 @@
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:gravity="center"
-    android:orientation="horizontal"
-    android:padding="6dp" >
+    android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/contact_name_1"
@@ -18,12 +17,12 @@
         android:layout_weight="1"
         android:background="@drawable/contact_bg"
         android:hint="@string/contact_name_1"
-        android:padding="6dp"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="10dp"/>
 
     <ImageButton
         android:id="@+id/contact_phone_1"

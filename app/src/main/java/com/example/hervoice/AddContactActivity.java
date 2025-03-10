@@ -3,7 +3,6 @@ package com.example.hervoice;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 
@@ -24,7 +22,7 @@ public class AddContactActivity extends AppCompatActivity {
 
     private EditText nameInput, phoneInput;
     private Spinner relationshipSpinner;
-    private Switch smsAlertSwitch;
+    private Switch smsAlertSwitch;  // Keep using smsAlert
     private Button saveButton;
 
     private FirebaseFirestore db;
@@ -48,7 +46,7 @@ public class AddContactActivity extends AppCompatActivity {
         nameInput = findViewById(R.id.name_input);
         phoneInput = findViewById(R.id.phone_input);
         relationshipSpinner = findViewById(R.id.relationship_spinner);
-        smsAlertSwitch = findViewById(R.id.sms_alert_switch);
+        smsAlertSwitch = findViewById(R.id.sms_alert_switch); // Keep smsAlert
         saveButton = findViewById(R.id.save_button);
 
         // Populate Spinner with relationship options
@@ -65,7 +63,7 @@ public class AddContactActivity extends AppCompatActivity {
         String name = nameInput.getText().toString().trim();
         String phone = phoneInput.getText().toString().trim();
         String relationship = relationshipSpinner.getSelectedItem().toString();
-        boolean smsAlertEnabled = smsAlertSwitch.isChecked();
+        boolean smsAlert = smsAlertSwitch.isChecked();  // Use smsAlert here
 
         // Validation checks
         if (TextUtils.isEmpty(name)) {
@@ -83,7 +81,7 @@ public class AddContactActivity extends AppCompatActivity {
 
         // Disable save button to prevent multiple clicks
         saveButton.setEnabled(false);
-        saveButton.setText("Checking...");
+        saveButton.setText(R.string.saving);
 
         // 🔥 **Step 1: Check if phone number already exists**
         contactsRef.whereEqualTo("phone", phone).get()
@@ -95,7 +93,7 @@ public class AddContactActivity extends AppCompatActivity {
                         saveButton.setText("Save");
                     } else {
                         // ✅ Phone number does not exist → Save the contact
-                        saveContactToFirestore(name, phone, relationship, smsAlertEnabled);
+                        saveContactToFirestore(name, phone, relationship, smsAlert);
                     }
                 })
                 .addOnFailureListener(e -> {
@@ -106,26 +104,40 @@ public class AddContactActivity extends AppCompatActivity {
                 });
     }
 
-    private void saveContactToFirestore(String name, String phone, String relationship, boolean smsAlertEnabled) {
-        // Create a HashMap to store contact data
-        HashMap<String, Object> contactMap = new HashMap<>();
-        contactMap.put("name", name);
-        contactMap.put("phone", phone);
-        contactMap.put("relationship", relationship);
-        contactMap.put("smsAlertEnabled", smsAlertEnabled);
+    private void saveContactToFirestore(String name, String phone, String relationship, boolean smsAlert) {
+        // Check for duplicate phone number before saving
+        contactsRef.whereEqualTo("phone", phone).get()
+                .addOnSuccessListener(querySnapshot -> {
+                    if (!querySnapshot.isEmpty()) {
+                        Toast.makeText(AddContactActivity.this, "This phone number is already saved!", Toast.LENGTH_SHORT).show();
+                        saveButton.setEnabled(true);
+                        saveButton.setText("Save");
+                    } else {
+                        // Proceed with saving the contact as no duplicates were found
+                        HashMap<String, Object> contactMap = new HashMap<>();
+                        contactMap.put("name", name);
+                        contactMap.put("phone", phone);
+                        contactMap.put("relationship", relationship);
+                        contactMap.put("smsAlert", smsAlert);  // Use smsAlert here
 
-        // Add contact to Firestore
-        contactsRef.add(contactMap)
-                .addOnSuccessListener(documentReference -> {
-                    // Success feedback
-                    Toast.makeText(AddContactActivity.this, "Contact saved successfully!", Toast.LENGTH_SHORT).show();
-                    finish(); // Close the activity after saving
+                        // Add contact to Firestore
+                        contactsRef.add(contactMap)
+                                .addOnSuccessListener(documentReference -> {
+                                    Toast.makeText(AddContactActivity.this, "Contact saved successfully!", Toast.LENGTH_SHORT).show();
+                                    finish(); // Close the activity after saving
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("AddContactActivity", "Failed to save contact", e);
+                                    Toast.makeText(AddContactActivity.this, "Failed to save contact!", Toast.LENGTH_SHORT).show();
+                                    saveButton.setEnabled(true);
+                                    saveButton.setText("Save");
+                                });
+                    }
                 })
                 .addOnFailureListener(e -> {
-                    // Error feedback
-                    Log.e("AddContactActivity", "Failed to save contact", e);
-                    Toast.makeText(AddContactActivity.this, "Failed to save contact!", Toast.LENGTH_SHORT).show();
-                    saveButton.setEnabled(true); // Re-enable save button
+                    Log.e("AddContactActivity", "Error checking contact", e);
+                    Toast.makeText(AddContactActivity.this, "Error checking contact!", Toast.LENGTH_SHORT).show();
+                    saveButton.setEnabled(true);
                     saveButton.setText("Save");
                 });
     }
