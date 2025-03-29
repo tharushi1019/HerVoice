@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -46,7 +47,6 @@ public class FragmentSendAlert extends Fragment {
     private MapView mapView;
     private ProgressBar progressBar;
     private TextView successText;
-    private ImageButton refreshButton;
     private FusedLocationProviderClient fusedLocationClient;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -62,7 +62,7 @@ public class FragmentSendAlert extends Fragment {
         // Initialize UI elements
         mapView = rootView.findViewById(R.id.map_view);
         ImageButton sendAlertButton = rootView.findViewById(R.id.send_alert_button);
-        refreshButton = rootView.findViewById(R.id.refresh_location_button);
+        ImageButton refreshButton = rootView.findViewById(R.id.refresh_location_button);
         progressBar = rootView.findViewById(R.id.progress_bar);
         successText = rootView.findViewById(R.id.success_text);
         successText.setVisibility(View.GONE);
@@ -197,8 +197,8 @@ public class FragmentSendAlert extends Fragment {
         playAlertSound();
 
         // Vibrate device for alert
-        if (vibrator != null) {
-            vibrator.vibrate(500); // Vibrate for 500ms
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.VIBRATE}, 1);
         }
 
         progressBar.setVisibility(View.GONE);
@@ -208,13 +208,11 @@ public class FragmentSendAlert extends Fragment {
 
     // 🔊 Play Emergency Alert Sound
     private void playAlertSound() {
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(getActivity(), R.raw.alert_sound);
-        } else {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.reset();
-            mediaPlayer = MediaPlayer.create(getActivity(), R.raw.alert_sound);
         }
+        mediaPlayer = MediaPlayer.create(getActivity(), R.raw.alert_sound);
         mediaPlayer.start();
     }
 
