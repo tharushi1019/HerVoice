@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -168,6 +169,25 @@ public class FragmentContactList extends Fragment {
         }
     }
 
+    /**
+     * Creates emergency message with location information
+     *
+     * @param location The user's current location
+     * @return Formatted emergency message with coordinates and map link
+     */
+    private String createEmergencyMessage(Location location) {
+        // Create Google Maps link with real-time location
+        String googleMapsLink = "https://maps.google.com/?q=" +
+                location.getLatitude() + "," +
+                location.getLongitude();
+
+        // Create message with coordinates and clickable link
+        return "EMERGENCY! I need help! My current location: " +
+                location.getLatitude() + ", " +
+                location.getLongitude() +
+                "\n\nTrack me here: " + googleMapsLink;
+    }
+
     private void sendSMS(Contact contact) {
         if (context == null || getActivity() == null || fusedLocationClient == null) return;
 
@@ -176,11 +196,16 @@ public class FragmentContactList extends Fragment {
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(location -> {
                         if (location != null) {
-                            String message = "Emergency! My location is: " + location.getLatitude() + ", " + location.getLongitude();
+                            // Get emergency message from dedicated method
+                            String message = createEmergencyMessage(location);
                             String phoneNumber = contact.getPhone();
+
                             SmsManager smsManager = SmsManager.getDefault();
-                            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-                            showToast("Emergency message sent!");
+                            // Handle long messages by dividing them into parts
+                            ArrayList<String> messageParts = smsManager.divideMessage(message);
+                            smsManager.sendMultipartTextMessage(phoneNumber, null, messageParts, null, null);
+
+                            showToast("Emergency location sent!");
                         } else {
                             showToast("Unable to get location");
                         }
