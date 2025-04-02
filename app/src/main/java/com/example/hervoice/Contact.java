@@ -3,6 +3,8 @@ package com.example.hervoice;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Contact implements Parcelable {
     private String contactId;
     private String name;
@@ -31,7 +33,7 @@ public class Contact implements Parcelable {
         smsAlert = in.readByte() != 0;
     }
 
-    public static final Creator<Contact> CREATOR = new Creator<Contact>() {
+    public static final Creator<Contact> CREATOR = new Creator<>() {
         @Override
         public Contact createFromParcel(Parcel in) {
             return new Contact(in);
@@ -71,23 +73,7 @@ public class Contact implements Parcelable {
         this.name = name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setRelationship(String relationship) {
-        this.relationship = relationship;
-    }
-
-    public void setSmsAlert(boolean smsAlert) {
-        this.smsAlert = smsAlert;
-    }
-
-    // Validation method for phone numbers
-    public boolean isValidPhoneNumber() {
-        return phone != null && phone.matches("\\d{10}"); // Example: 10-digit phone number
-    }
-
+    @NonNull
     @Override
     public String toString() {
         return "Contact{" +

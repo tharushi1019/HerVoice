@@ -3,24 +3,20 @@ package com.example.hervoice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText inputName, inputEmail, inputPhone, inputPassword, inputConfirmPassword;
-    private Button btnSignUp;
-    private TextView tvSignInRedirect;
     private FirebaseAuth mAuth;
 
     @Override
@@ -37,8 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
         inputPhone = findViewById(R.id.input_phone);
         inputPassword = findViewById(R.id.input_password);
         inputConfirmPassword = findViewById(R.id.input_confirm_password);
-        btnSignUp = findViewById(R.id.btn_signup);
-        tvSignInRedirect = findViewById(R.id.tvSignInRedirect);
+        Button btnSignUp = findViewById(R.id.btn_signup);
+        TextView tvSignInRedirect = findViewById(R.id.tvSignInRedirect);
 
         // Sign Up button click event
         btnSignUp.setOnClickListener(view -> registerUser());
@@ -96,13 +92,13 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
+                        mAuth.getCurrentUser();
                         Toast.makeText(SignUpActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(SignUpActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Registration Failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

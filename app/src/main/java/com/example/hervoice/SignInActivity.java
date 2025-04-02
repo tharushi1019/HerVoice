@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,11 +11,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class SignInActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
-    private Button btnSignIn;
-    private TextView tvSignUpRedirect, tvForgetPassword;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
 
@@ -41,9 +40,9 @@ public class SignInActivity extends AppCompatActivity {
         // Initialize UI Elements
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
-        btnSignIn = findViewById(R.id.btn_sign_in);
-        tvSignUpRedirect = findViewById(R.id.tvSignUpRedirect);
-        tvForgetPassword = findViewById(R.id.forget_password); // Add this line
+        Button btnSignIn = findViewById(R.id.btn_sign_in);
+        TextView tvSignUpRedirect = findViewById(R.id.tvSignUpRedirect);
+        TextView tvForgetPassword = findViewById(R.id.forget_password); // Add this line
 
         // Sign-In Button Click Listener
         btnSignIn.setOnClickListener(view -> signInUser());
@@ -83,13 +82,13 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Save session information (user logged in)
-                        saveUserSession(true);
+                        saveUserSession();
 
                         Toast.makeText(SignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                         finish();
                     } else {
-                        Toast.makeText(SignInActivity.this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Login Failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -100,14 +99,14 @@ public class SignInActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(SignInActivity.this, "Password reset email sent!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(SignInActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Error: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void saveUserSession(boolean isLoggedIn) {
+    private void saveUserSession() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", isLoggedIn); // Save login status
+        editor.putBoolean("isLoggedIn", true); // Save login status
         editor.apply();
     }
 

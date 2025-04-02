@@ -43,12 +43,16 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.firebase.firestore)
     implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.osmdroid)
     implementation(platform(libs.firebase.bom)) // Firebase BOM
+    implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth) // Firebase Authentication
     implementation(libs.firebase.database) // Firebase Database
     implementation(libs.viewpager2) // For ViewPager2
+    implementation(libs.play.services.base)
+    implementation(libs.play.services.auth)
 }

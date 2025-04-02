@@ -1,5 +1,6 @@
 package com.example.hervoice;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,16 +18,16 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class AddContactActivity extends AppCompatActivity {
 
     private EditText nameInput, phoneInput;
     private Spinner relationshipSpinner;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch smsAlertSwitch;  // Keep using smsAlert
     private Button saveButton;
 
-    private FirebaseFirestore db;
-    private FirebaseAuth auth;
     private CollectionReference contactsRef;
 
     @Override
@@ -35,11 +36,11 @@ public class AddContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_contact);
 
         // Initialize Firebase instances
-        db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
         // Reference to user's contacts collection
-        String userId = auth.getCurrentUser().getUid();
+        String userId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         contactsRef = db.collection("users").document(userId).collection("contacts");
 
         // Initialize UI components
@@ -59,6 +60,7 @@ public class AddContactActivity extends AppCompatActivity {
         saveButton.setOnClickListener(v -> checkAndSaveContact());
     }
 
+    @SuppressLint("SetTextI18n")
     private void checkAndSaveContact() {
         String name = nameInput.getText().toString().trim();
         String phone = phoneInput.getText().toString().trim();
@@ -104,6 +106,7 @@ public class AddContactActivity extends AppCompatActivity {
                 });
     }
 
+    @SuppressLint("SetTextI18n")
     private void saveContactToFirestore(String name, String phone, String relationship, boolean smsAlert) {
         // Check for duplicate phone number before saving
         contactsRef.whereEqualTo("phone", phone).get()

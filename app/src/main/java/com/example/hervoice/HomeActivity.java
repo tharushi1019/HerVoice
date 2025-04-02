@@ -59,13 +59,9 @@ public class HomeActivity extends AppCompatActivity {
         updateIconColors(0);
 
         // Set up click listeners for icons
-        homeIcon.setOnClickListener(v -> {
-            viewPager.setCurrentItem(0, true);
-        });
+        homeIcon.setOnClickListener(v -> viewPager.setCurrentItem(0, true));
 
-        contactsIcon.setOnClickListener(v -> {
-            viewPager.setCurrentItem(1, true);
-        });
+        contactsIcon.setOnClickListener(v -> viewPager.setCurrentItem(1, true));
 
         // Set up page change listener
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

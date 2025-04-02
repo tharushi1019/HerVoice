@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,76 +17,95 @@
         android:padding="8dp"
         android:text="@string/send_location_alert"
         android:textColor="@color/dark_pink"
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         tools:ignore="RelativeOverlap" />
 
-    <!-- Map view -->
-    <org.osmdroid.views.MapView
+    <!-- Google Maps View -->
+    <com.google.android.gms.maps.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="0dp"
         android:layout_below="@id/header_text"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_above="@+id/buttons_container"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/map_view_description" />
+
+    <!-- Container for buttons and messages -->
+    <RelativeLayout
+        android:id="@+id/buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp">
+
+        <!-- Send Alert Button -->
+        <ImageButton
+            android:id="@+id/send_alert_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description"
+            android:scaleType="centerInside"
+            android:src="@drawable/alert_icon"
+            tools:ignore="RedundantDescriptionCheck" />
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/send_alert_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <!-- Success Message -->
+        <TextView
+            android:id="@+id/success_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progress_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/alert_sent_successfully"
+            android:textColor="@color/Dark_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_success_checkmark" />
+    </RelativeLayout>
 
     <!-- Refresh Location Button -->
-    <ImageButton
-        android:id="@+id/refresh_location_button"
+    <LinearLayout
+        android:id="@+id/refresh_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/refresh_location"
-        android:src="@drawable/refresh_icon"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="RelativeOverlap">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/refresh_location_button"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:text="@string/refresh"
-        tools:ignore="RtlHardcoded,TextContrastCheck" />
+        <ImageButton
+            android:id="@+id/refresh_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/refresh_location"
+            android:src="@drawable/refresh_icon"
+            android:padding="4dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
-    <!-- Send Alert Button -->
-    <ImageButton
-        android:id="@+id/send_alert_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/map_view"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description"
-        android:scaleType="centerInside"
-        android:src="@drawable/alert_icon"
-        tools:ignore="RedundantDescriptionCheck" />
-
-    <!-- Progress Bar -->
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/send_alert_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:indeterminate="true"
-        android:visibility="gone" />
-
-    <!-- Success Message -->
-    <TextView
-        android:id="@+id/success_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progress_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/alert_sent_successfully"
-        android:textColor="@color/Dark_green"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_success_checkmark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/refresh"
+            android:textSize="12sp"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
 </RelativeLayout>
