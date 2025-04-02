@@ -1,5 +1,6 @@
 package com.example.hervoice;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ArrayAdapter;
@@ -8,21 +9,22 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
+/** @noinspection unchecked*/
 public class EditContactActivity extends AppCompatActivity {
     private EditText contactNameEditText, contactPhoneEditText;
     private Spinner relationshipSpinner;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch smsAlertSwitch;
     private String contactId;
     private FirebaseFirestore db;
@@ -92,11 +94,8 @@ public class EditContactActivity extends AppCompatActivity {
 
                     // Fetch the smsAlert value correctly (ensure it's a boolean)
                     Boolean smsAlert = contact.isSmsAlert();
-                    if (smsAlert != null) {
-                        smsAlertSwitch.setChecked(smsAlert);
-                    } else {
-                        smsAlertSwitch.setChecked(false); // Default to false if null
-                    }
+                    // Default to false if null
+                    smsAlertSwitch.setChecked(Objects.requireNonNullElse(smsAlert, false));
                 }
             } else {
                 Toast.makeText(EditContactActivity.this, "Error fetching contact data", Toast.LENGTH_SHORT).show();
@@ -141,9 +140,7 @@ public class EditContactActivity extends AppCompatActivity {
                     Toast.makeText(EditContactActivity.this, "Contact updated successfully", Toast.LENGTH_SHORT).show();
                     finish(); // Close the activity
                 })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(EditContactActivity.this, "Error updating contact", Toast.LENGTH_SHORT).show();
-                });
+                .addOnFailureListener(e -> Toast.makeText(EditContactActivity.this, "Error updating contact", Toast.LENGTH_SHORT).show());
     }
 
 }

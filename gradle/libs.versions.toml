@@ -1,32 +1,40 @@
 [versions]
-agp = "8.9.0"
+agp = "8.9.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 kotlin = "1.9.24"
-coreKtx = "1.15.0"
-firebase-bom = "33.8.0"
-firebase-auth = "23.1.0"
-firebaseFirestore = "25.1.1"
+coreKtx = "1.16.0"
+firebase-bom = "33.12.0"
+firebase-auth = "23.2.0"
+firebaseFirestore = "25.1.3"
+playServicesAuth = "21.3.0"
+playServicesBase = "18.6.0"
 playServicesLocation = "21.3.0"
 viewpager2 = "1.1.0"
+playServicesMaps = "19.1.0"
+osmdroid = "6.1.20"
 
 [libraries]
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-osmdroid = { module = "org.osmdroid:osmdroid-android", version = "6.1.11" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.16.0-rc01" }
+osmdroid = { module = "org.osmdroid:osmdroid-android", version = "6.1.20" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database"}
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+play-services-base = { module = "com.google.android.gms:play-services-base", version = "18.6.0" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

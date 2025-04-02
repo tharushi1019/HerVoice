@@ -77,5 +77,6 @@
     <string name="home">Home</string>
     <string name="refresh_location">Refresh Location</string>
     <string name="refresh">refresh</string>
-    <string name="saving">Saving...</string>
+    <string name="saving">Saving…</string>
+    <string name="map_view_description">map_view_description</string>
 </resources>
