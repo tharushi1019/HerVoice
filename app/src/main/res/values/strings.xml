@@ -79,4 +79,18 @@
     <string name="refresh">refresh</string>
     <string name="saving">Saving…</string>
     <string name="map_view_description">map_view_description</string>
+    <string name="manage_your_personal_information">Manage your personal information</string>
+    <string name="my_profile">My Profile</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="logout">Logout</string>
+    <string name="user_profile">User Profile</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="profile">profile</string>
+    <string name="enter_password_to_confirm">Enter password to confirm:</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="processing">Processing...</string>
+    <string name="sign_up_Button">Sign Up</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

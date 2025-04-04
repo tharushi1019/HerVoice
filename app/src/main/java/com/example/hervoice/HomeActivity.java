@@ -14,7 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.File;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -72,6 +75,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // Initialize Profile Image
+        ImageView profileImage = findViewById(R.id.profile_image_home);
+        profileImage.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
+
         // Initialize Logout Button
         Button logoutButton = findViewById(R.id.logout_button);
 
@@ -84,6 +94,9 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, SignInActivity.class));
             finish();
         });
+
+        // Load profile image from internal storage if it exists
+        loadProfileImageFromStorage(profileImage);
     }
 
     // Update icon colors based on currently selected fragment
@@ -119,5 +132,24 @@ public class HomeActivity extends AppCompatActivity {
         public int getItemCount() {
             return 2; // Two fragments
         }
+    }
+
+    private void loadProfileImageFromStorage(ImageView profileImageView) {
+        // Load profile image from user's internal storage
+        File file = new File(getFilesDir(), "profile.jpg");
+        if (file.exists()) {
+            Glide.with(this)
+                    .load(file)
+                    .circleCrop()  // This makes the image circular
+                    .into(profileImageView);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reload profile image when returning to this activity
+        ImageView profileImage = findViewById(R.id.profile_image_home);
+        loadProfileImageFromStorage(profileImage);
     }
 }
