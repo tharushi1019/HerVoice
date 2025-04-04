@@ -6,41 +6,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
-    android:background="@drawable/bg">
+    android:background="#F4B4D3">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/navigationContainer"/>
-
-    <!-- Navigation Icons Container -->
-    <LinearLayout
-        android:id="@+id/navigationContainer"
+    <!-- Top Navigation Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/logout_button">
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Home Icon (Centered) -->
         <ImageView
             android:id="@+id/homeIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_home"
-            android:layout_marginEnd="20dp"
-            android:contentDescription="@string/home" />
+            android:contentDescription="@string/home"
+            android:layout_marginStart="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/contactsIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"/>
 
+        <!-- Contacts Icon (Centered) -->
         <ImageView
             android:id="@+id/contactsIcon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_contacts"
-            android:layout_marginStart="20dp"
-            android:contentDescription="@string/contacts" />
-    </LinearLayout>
+            android:contentDescription="@string/contacts"
+            android:layout_marginStart="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/homeIcon"
+            app:layout_constraintEnd_toStartOf="@id/profile_image_home"/>
+
+        <!-- Profile Image (Top Right) -->
+        <ImageView
+            android:id="@+id/profile_image_home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/profile"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ViewPager for main content -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topNavigation"
+        app:layout_constraintBottom_toTopOf="@+id/logout_button" />
 
     <!-- Logout Button -->
     <Button
@@ -57,19 +81,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="10dp"/>
 
+    <!-- Footer Text -->
     <TextView
         android:id="@+id/footerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="8dp"
         android:text="@string/hervoice_2025"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:drawableLeftCompat="@drawable/ic_logo"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="10dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

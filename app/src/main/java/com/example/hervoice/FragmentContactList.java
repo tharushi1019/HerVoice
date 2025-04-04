@@ -191,6 +191,16 @@ public class FragmentContactList extends Fragment {
     private void sendSMS(Contact contact) {
         if (context == null || getActivity() == null || fusedLocationClient == null) return;
 
+        // Check for SEND_SMS permission
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request SEND_SMS permission
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.SEND_SMS}, 3);
+            return;
+        }
+
+        // Check for location permission
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient.getLastLocation()

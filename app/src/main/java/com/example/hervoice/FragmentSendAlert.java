@@ -343,16 +343,22 @@ public class FragmentSendAlert extends Fragment implements OnMapReadyCallback {
             return;
         }
         try {
+            // Create Google Maps link with location
+            String googleMapsLink = String.format(Locale.ENGLISH,
+                    "https://maps.google.com/?q=%f,%f", userLatitude, userLongitude);
+
+            // Create enhanced emergency message with coordinates and link
             String locationMessage = String.format(Locale.ENGLISH,
-                    "🚨 Emergency Alert! I'm at: https://maps.google.com/?q=%f,%f", userLatitude, userLongitude);
+                    "🚨 EMERGENCY! I need help! My current location: %f, %f\n\nTrack me here: %s",
+                    userLatitude, userLongitude, googleMapsLink);
+
             SmsManager smsManager = SmsManager.getDefault();
             for (String phoneNumber : contacts) {
                 try {
                     String normalizedPhone = phoneNumber.replaceAll("[\\s-()]", "");
+                    // Handle long messages by dividing them into parts
                     ArrayList<String> messageParts = smsManager.divideMessage(locationMessage);
-                    for (String messagePart : messageParts) {
-                        smsManager.sendTextMessage(normalizedPhone, null, messagePart, null, null);
-                    }
+                    smsManager.sendMultipartTextMessage(normalizedPhone, null, messageParts, null, null);
                 } catch (Exception e) {
                     if (getActivity() != null) {
                         Toast.makeText(getActivity(), "Failed to send to " + phoneNumber, Toast.LENGTH_SHORT).show();
@@ -396,7 +402,6 @@ public class FragmentSendAlert extends Fragment implements OnMapReadyCallback {
             }
         }
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {

@@ -17,9 +17,8 @@
         android:text="@string/your_emergency_contacts"
         android:textAlignment="center"
         android:textColor="@color/dark_pink"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:drawableTopCompat="@drawable/contact" />
+        android:textSize="26sp"
+        android:textStyle="bold" />
 
     <!-- Contacts List Container -->
     <LinearLayout
