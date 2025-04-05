@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final String PROFILE_IMAGE_FILENAME = "profile.jpg";
     private static final String USER_SESSION = "UserSession";
     private static final String IS_LOGGED_IN = "isLoggedIn";
+    private static final String IMAGE_UPDATED = "imageUpdated";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,12 @@ public class ProfileActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() == null) {
             redirectToSignIn();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadImageFromInternalStorage();
     }
 
     private void signOutUser() {
@@ -286,8 +293,24 @@ public class ProfileActivity extends AppCompatActivity {
             try {
                 Uri imageUri = data.getData();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                profileImage.setImageBitmap(bitmap);
+
+                // Update image view using Glide for consistent display
+                Glide.with(this)
+                        .load(bitmap)
+                        .circleCrop()
+                        .into(profileImage);
+
+                // Save image to internal storage
                 saveImageToInternalStorage(bitmap);
+
+                // Mark that image has been updated
+                setImageUpdatedFlag();
+
+                saveImageToInternalStorage(bitmap);
+                setImageUpdatedFlag();
+                loadImageFromInternalStorage();
+
+                Toast.makeText(this, "Profile photo updated", Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Error loading image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -311,15 +334,10 @@ public class ProfileActivity extends AppCompatActivity {
                         String name = documentSnapshot.getString("name");
                         String phone = documentSnapshot.getString("phone");
                         String email = currentUser.getEmail();
-                        String imageUrl = documentSnapshot.getString("imageUrl");
 
                         editName.setText(name);
                         editPhone.setText(phone);
                         textEmail.setText(email);
-
-                        if (imageUrl != null && !imageUrl.isEmpty()) {
-                            Glide.with(this).load(imageUrl).into(profileImage);
-                        }
                     } else {
                         Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show();
                     }
@@ -373,12 +391,40 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    // Modify your loadImageFromInternalStorage method
     private void loadImageFromInternalStorage() {
-        // Load from user's internal storage
         File file = new File(getFilesDir(), PROFILE_IMAGE_FILENAME);
         if (file.exists()) {
-            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            profileImage.setImageBitmap(bitmap);
+            // Skip cache to ensure fresh loading
+            Glide.with(this)
+                    .load(file)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .circleCrop()
+                    .into(profileImage);
         }
+    }
+
+    private void setImageUpdatedFlag() {
+        // Set a flag in SharedPreferences to indicate image was updated
+        SharedPreferences imagePrefs = getSharedPreferences("ImagePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = imagePrefs.edit();
+        editor.putBoolean(IMAGE_UPDATED, true);
+        editor.putLong("lastUpdated", System.currentTimeMillis());
+        editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // Make sure HomeActivity knows to refresh the image when we return
+        setImageUpdatedFlag();
+    }
+
+    @Override
+    public void finish() {
+        // Ensure image update flag is set before finishing
+        setImageUpdatedFlag();
+        super.finish();
     }
 }
