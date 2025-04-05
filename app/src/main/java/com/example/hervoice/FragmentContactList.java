@@ -97,7 +97,7 @@ public class FragmentContactList extends Fragment {
         return rootView;
     }
 
-    // 🔥 Real-time Firestore Listener to Auto-Update Contact List
+    // Real-time Firestore Listener to Auto-Update Contact List
     private void listenForContactUpdates() {
         FirebaseUser user = auth.getCurrentUser();
         if (user == null) {
@@ -245,7 +245,7 @@ public class FragmentContactList extends Fragment {
         }
     }
 
-    // 🔥 Stop listening when fragment is destroyed (to prevent memory leaks)
+    // Stop listening when fragment is destroyed (to prevent memory leaks)
     @Override
     public void onDestroyView() {
         super.onDestroyView();

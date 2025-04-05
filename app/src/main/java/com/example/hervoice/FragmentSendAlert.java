@@ -232,7 +232,7 @@ public class FragmentSendAlert extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    // 📍 Fetch User's Real-time Location (fallback if continuous updates not available)
+    // Fetch User's Real-time Location (fallback if continuous updates not available)
     @SuppressLint("MissingPermission")
     private void getUserLocation() {
         if (getActivity() == null || !isAdded()) return;
@@ -282,7 +282,7 @@ public class FragmentSendAlert extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    // 🚨 Send Emergency Alert to Enabled Contacts
+    // Send Emergency Alert to Enabled Contacts
     private void sendEmergencyAlert() {
         if (getActivity() == null) return;
         FirebaseUser user = auth.getCurrentUser();
@@ -334,7 +334,7 @@ public class FragmentSendAlert extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    // 📩 Send SMS with User's Location & Play Alert Sound
+    // Send SMS with User's Location & Play Alert Sound
     private void sendSMS(List<String> contacts) {
         if (getActivity() == null) return;
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
