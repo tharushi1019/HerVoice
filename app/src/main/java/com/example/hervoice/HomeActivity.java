@@ -15,6 +15,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
@@ -25,6 +26,9 @@ public class HomeActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private ViewPager2 viewPager;
     private ImageView homeIcon, contactsIcon;
+    private ImageView profileImage;
+    private static final String PROFILE_IMAGE_FILENAME = "profile.jpg";
+    private static final String IMAGE_UPDATED = "imageUpdated";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // Initialize Profile Image
-        ImageView profileImage = findViewById(R.id.profile_image_home);
+        profileImage = findViewById(R.id.profile_image_home);
         profileImage.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
             startActivity(intent);
@@ -96,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // Load profile image from internal storage if it exists
-        loadProfileImageFromStorage(profileImage);
+        loadProfileImageFromStorage();
     }
 
     // Update icon colors based on currently selected fragment
@@ -134,22 +138,64 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void loadProfileImageFromStorage(ImageView profileImageView) {
+    private void loadProfileImageFromStorage() {
         // Load profile image from user's internal storage
-        File file = new File(getFilesDir(), "profile.jpg");
+        File file = new File(getFilesDir(), PROFILE_IMAGE_FILENAME);
         if (file.exists()) {
+            // Use Glide with cache busting to ensure fresh images
             Glide.with(this)
                     .load(file)
-                    .circleCrop()  // This makes the image circular
-                    .into(profileImageView);
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .circleCrop()
+                    .into(profileImage);
+
+            // Reset the update flag after loading
+            resetImageUpdatedFlag();
         }
+    }
+
+    private boolean wasImageUpdated() {
+        SharedPreferences imagePrefs = getSharedPreferences("ImagePrefs", MODE_PRIVATE);
+        return imagePrefs.getBoolean(IMAGE_UPDATED, false);
+    }
+
+    private void resetImageUpdatedFlag() {
+        SharedPreferences imagePrefs = getSharedPreferences("ImagePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = imagePrefs.edit();
+        editor.putBoolean(IMAGE_UPDATED, false);
+        editor.apply();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Reload profile image when returning to this activity
-        ImageView profileImage = findViewById(R.id.profile_image_home);
-        loadProfileImageFromStorage(profileImage);
+
+        // Check if image was updated in another activity
+        if (wasImageUpdated()) {
+            // Reload profile image with cache busting
+            if (profileImage != null) {
+                File file = new File(getFilesDir(), PROFILE_IMAGE_FILENAME);
+                if (file.exists()) {
+                    Glide.with(this)
+                            .load(file)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .circleCrop()
+                            .into(profileImage);
+                }
+            }
+            // Reset the flag
+            resetImageUpdatedFlag();
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        // Also check when activity is restarted (coming back from another activity)
+        if (wasImageUpdated()) {
+            loadProfileImageFromStorage();
+        }
     }
 }
