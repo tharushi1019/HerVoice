@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/contact_bg"
-        android:hint="@string/contact_name_1"
         android:gravity="center"
+        android:hint="@string/contact_name_1"
+        android:padding="10dp"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:padding="10dp"/>
+        android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/contact_phone_1"
