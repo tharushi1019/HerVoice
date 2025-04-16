@@ -239,7 +239,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/save_button"
                 app:layout_constraintWidth_percent="0.8"
-                tools:ignore="VisualLintButtonSize" />
+                tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
 
             <!-- Delete Button -->
             <Button
