@@ -37,4 +37,5 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build the project with logs
-      run: ./gradlew build --info --stacktrace
+      run: ./gradlew build --stacktrace --info
+  
