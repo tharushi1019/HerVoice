@@ -30,5 +30,8 @@ render.experimental.xml
 google-services.json
 app/src/main/res/values/secrets.xml
 
+# Except for the dummy one in the app directory
+!app/google-services.json
+
 # Android Profiling
 *.hprof
