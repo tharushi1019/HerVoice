@@ -21,27 +21,27 @@
             android:id="@+id/homeIcon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_home"
-            android:contentDescription="@string/home"
             android:layout_marginStart="25dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/home"
+            android:src="@drawable/ic_home"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/contactsIcon"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Contacts Icon (Centered) -->
         <ImageView
             android:id="@+id/contactsIcon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_contacts"
-            android:contentDescription="@string/contacts"
             android:layout_marginStart="50dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/contacts"
+            android:src="@drawable/ic_contacts"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/profile_image_home"
             app:layout_constraintStart_toEndOf="@id/homeIcon"
-            app:layout_constraintEnd_toStartOf="@id/profile_image_home"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Profile Image (Top Right) -->
         <ImageView
