@@ -1,3 +1,4 @@
+
 name: Android CI
 
 on:
@@ -36,6 +37,5 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    - name: Build the project with logs
-      run: ./gradlew build --stacktrace --info
-  
+    - name: Build the project with warnings
+      run: ./gradlew build --warning-mode all --stacktrace
