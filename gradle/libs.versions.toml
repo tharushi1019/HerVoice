@@ -39,7 +39,7 @@ firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "f
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database"}
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
-play-services-base = { module = "com.google.android.gms:play-services-base", version = "18.6.0" }
+play-services-base = { module = "com.google.android.gms:play-services-base", version = "18.7.0" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
