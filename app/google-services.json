@@ -1,0 +1,23 @@
+{
+  "project_info": {
+    "project_number": "000000000000",
+    "firebase_url": "https://dummy.firebaseio.com",
+    "project_id": "dummy",
+    "storage_bucket": "dummy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:000000000000:android:0000000000000000",
+        "android_client_info": {
+          "package_name": "com.example.hervoice"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "dummy_key"
+        }
+      ]
+    }
+  ]
+}
