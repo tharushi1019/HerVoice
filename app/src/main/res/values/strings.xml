@@ -70,4 +70,5 @@
     <string name="please_wait">Please wait...</string>
     <string name="sign_in_button">Sign In</string>
     <string name="sign_out">Sign Out</string>
+    <string name="enter_password_to_confirm">enter_password</string>
 </resources>
