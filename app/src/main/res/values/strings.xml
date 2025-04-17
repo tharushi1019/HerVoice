@@ -5,17 +5,9 @@
     <string name="log_out">Log out</string>
     <string name="your_emergency_contacts">Your Emergency Contacts</string>
     <string name="contact_name_1">Contact Name 1</string>
-    <string name="contact_name_2">Contact Name 2</string>
-    <string name="contact_name_3">Contact Name 3</string>
-    <string name="contact_name_4">Contact Name 4</string>
-    <string name="contact_name_5">Contact Name 5</string>
     <string name="hervoice_2025">HerVoice©2025</string>
-    <string name="continue_with_facebook">Continue with Facebook</string>
-    <string name="continue_with_google">Continue with Google</string>
-    <string name="continue_with_microsoft">Continue with Microsoft</string>
     <string name="sign_in">Sign In</string>
     <string name="enter_password"> Enter Password</string>
-    <string name="or">______________ or ______________</string>
     <string name="enter_Email"> Enter Email</string>
     <string name="forget_your_password">Forget Your Password</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
@@ -34,7 +26,6 @@
     <string name="confirm_password_1">Confirm Password</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="sign_in_1"> Sign In</string>
-    <string name="send_alert">Send Alert</string>
     <string name="save">Save</string>
     <string-array name="relationship_options">
         <item>Family</item>
@@ -43,20 +34,10 @@
         <item>Other</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dial_option_1">dial option</string>
-    <string name="dial_option_2">dial option</string>
-    <string name="dial_option_3">dial option</string>
-    <string name="dial_option_4">dial option</string>
-    <string name="dial_option_5">dial option</string>
     <string name="sms_alert_option_1">sms alert option</string>
-    <string name="sms_alert_option_2">sms alert option</string>
-    <string name="sms_alert_option_3">sms alert option</string>
-    <string name="sms_alert_option_4">sms alert option</string>
-    <string name="sms_alert_option_5">sms alert option</string>
     <string name="alert_sent_successfully">Alert sent successfully!</string>
     <string name="send_location_alert">Send Location Alert</string>
-    <string name="real_time_map_view">Real Time Map view</string>
     <string name="with">with</string>
     <string name="_sign_in_">Sign In</string>
     <string name="hervoice_2025_add_contact">HerVoice©2025</string>
@@ -71,8 +52,6 @@
     <string name="add_contact">Add Contact</string>
     <string name="no_contacts_yet">No contacts yet</string>
     <string name="delete_contact">Delete Contact</string>
-    <string name="edit_contact">Edit Contact</string>
-    <string name="refresh_contacts">refresh_contacts</string>
     <string name="contacts">Contacts</string>
     <string name="home">Home</string>
     <string name="refresh_location">Refresh Location</string>
@@ -82,11 +61,9 @@
     <string name="manage_your_personal_information">Manage your personal information</string>
     <string name="my_profile">My Profile</string>
     <string name="change_photo">Change Photo</string>
-    <string name="logout">Logout</string>
     <string name="user_profile">User Profile</string>
     <string name="save_changes">Save Changes</string>
     <string name="profile">profile</string>
-    <string name="enter_password_to_confirm">Enter password to confirm:</string>
     <string name="delete_account">Delete Account</string>
     <string name="processing">Processing...</string>
     <string name="sign_up_Button">Sign Up</string>
