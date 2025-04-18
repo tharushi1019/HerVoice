@@ -1,2 +1,137 @@
-# HerVoice
-"HerVoice" is a mobile application designed to support UN Sustainable Development Goal 5 (SDG 5: Gender Equality) by enhancing women's safety. This app enables users to quickly share their live location with trusted trustedContacts during emergencies, ensuring a fast response and support system.
+# 📱 HerVoice - Women's Emergency Safety App
+
+HerVoice is a mobile application developed as a **Micro SaaS solution** for the **System Administration & Maintenance (IT31023)** module. It supports **UN Sustainable Development Goal 5 (Gender Equality)** by providing emergency safety features for women. The app enables users to **send real-time location alerts** to **trusted contacts**, manage their emergency list, and maintain secure profile settings — all powered by **Firebase**.
+
+---
+
+## 🎯 Goal
+
+To empower women with **instant location-based emergency alerts**, integrated **Firebase services**, and a secure contact management system — accessible even without logging in.
+
+---
+
+## 🚀 Features
+
+### 🔐 User Authentication
+- Firebase Email & Password Authentication
+- Sign Up / Sign In / Password Reset
+
+### 📇 Contact Management
+- Add/edit/delete up to **5 trusted contacts**
+- Enable/disable **emergency SMS alerts**
+- Direct call & SMS options
+
+### 📍 Emergency Alert
+- **Send real-time location** via SMS to selected contacts
+- **Live map view** (Google Maps)
+- Vibration + siren sound upon sending alerts
+
+### 👤 Profile
+- View/update name & phone number
+- Upload/change profile image
+- **Secure account deletion** with password re-authentication
+- Firebase Firestore integration
+
+### 🔧 Backend (Firebase)
+- Firebase Authentication
+- Firebase Firestore for contacts
+- Firebase Crashlytics for monitoring
+- Firebase App Distribution for deployment
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer               | Technology                          |
+|--------------------|--------------------------------------|
+| Frontend           | Android (Java, XML)                  |
+| Backend-as-a-Service | Firebase (Auth, Firestore, Crashlytics) |
+| CI/CD              | GitHub Actions                       |
+| Monitoring         | Firebase Crashlytics                 |
+| Deployment         | Firebase App Distribution            |
+
+---
+
+## 📦 CI/CD Workflow
+
+- Built with **GitHub Actions**
+- Injects `google-services.json` and `secrets.xml` using **GitHub Secrets**
+- Includes **Gradle caching** for performance
+- Runs **unit tests** with every build
+
+🔒 **No secrets or credentials are pushed to the repo**
+
+---
+
+## ✅ Completed DevOps Practices
+
+- 🔁 GitHub Flow: branching, PRs, reviews
+- 🔒 Secrets managed with GitHub Actions
+- 🧪 Unit testing integration
+- 📈 Firebase observability (Crashlytics, Analytics)
+- 📤 App Distribution for testing
+
+---
+
+## 📷 Screenshots
+
+> Add your screenshots here (UI of login, contact list, send alert, map, profile...)
+
+---
+
+## 📲 Installation (For Testers)
+
+This app is distributed via **Firebase App Distribution**:
+
+1. Download link will be sent via email (upon being added as a tester).
+2. Click the link → Install HerVoice → Test on device.
+3. APK distribution via GitHub Releases **may be added in the future**.
+
+---
+
+## 🧪 Testing
+
+Basic unit tests are located in:
+```
+app/src/test/java/com/example/hervoice/ExampleUnitTest.java
+```
+
+You can run tests with:
+
+```bash
+./gradlew test
+```
+
+---
+
+## 🔐 Security
+
+- Secrets are not stored in code.
+- Secure user re-authentication before deleting profile.
+- Permissions requested only when required (Location, SMS, Call).
+
+---
+
+## 📘 Documentation
+
+- 🔗 [Project Wiki](https://github.com/tharushi1019/HerVoice/wiki)  
+  Includes architecture diagrams, DevOps pipelines, deployment steps, and decisions.
+
+- 📄 [Release Notes](./RELEASE_NOTES.md)
+
+---
+
+## 👩‍💻 Developer
+
+**Tharushi**  
+Undergraduate, BSc (Hons) in Information Technology  
+[GitHub Profile](https://github.com/tharushi1019)
+
+---
+
+## 📄 License
+
+This project is for educational purposes and is not intended for production use.  
+Please contact the author for reuse or collaboration.
+
+---
