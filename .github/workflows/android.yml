@@ -48,3 +48,6 @@ jobs:
 
     - name: Build the project with warnings
       run: ./gradlew build --warning-mode all --stacktrace
+
+    - name: Run Unit Tests
+      run: ./gradlew testDebugUnitTest
