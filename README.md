@@ -77,7 +77,7 @@ To empower women with **instant location-based emergency alerts**, integrated **
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/59624734-e0cf-4093-8a5e-bc85e58b8292" width="250"/>
-  <img src="https://github.com/user-attachments/assets/c6be51d7-d7e6-4312-98ee-b7e9b7a87d20" width="250"/>
+  <img src="https://github.com/user-attachments/assets/b8f06793-4607-424a-b6fe-cd63be846ad1" width="250"/>
   <img src="https://github.com/user-attachments/assets/1a70b7a3-dedd-4fb8-b625-0b5326e62dd2" width="250"/>
 </p>
 
