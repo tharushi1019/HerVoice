@@ -75,7 +75,9 @@ To empower women with **instant location-based emergency alerts**, integrated **
 
 ## 📷 Screenshots
 
-> Add your screenshots here (UI of login, contact list, send alert, map, profile...)
+![Screenshot_20250418_213224](https://github.com/user-attachments/assets/59624734-e0cf-4093-8a5e-bc85e58b8292)
+![Screenshot_20250418_213224](https://github.com/user-attachments/assets/c6be51d7-d7e6-4312-98ee-b7e9b7a87d20)
+![Screenshot_20250418_213037](https://github.com/user-attachments/assets/1a70b7a3-dedd-4fb8-b625-0b5326e62dd2)
 
 ---
 
@@ -116,8 +118,6 @@ You can run tests with:
 
 - 🔗 [Project Wiki](https://github.com/tharushi1019/HerVoice/wiki)  
   Includes architecture diagrams, DevOps pipelines, deployment steps, and decisions.
-
-- 📄 [Release Notes](./RELEASE_NOTES.md)
 
 ---
 
