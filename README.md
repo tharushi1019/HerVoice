@@ -1,6 +1,6 @@
 # 📱 HerVoice - Women's Emergency Safety App
 
-HerVoice is a mobile application developed as a **Micro SaaS solution** for the **System Administration & Maintenance (IT31023)** module. It supports **UN Sustainable Development Goal 5 (Gender Equality)** by providing emergency safety features for women. The app enables users to **send real-time location alerts** to **trusted contacts**, manage their emergency list, and maintain secure profile settings — all powered by **Firebase**.
+HerVoice is a mobile application designed to support **UN Sustainable Development Goal 5 (Gender Equality)** by providing emergency safety features for women. The app enables users to **send real-time location alerts** to **trusted contacts**, manage their emergency list, and maintain secure profile settings — all powered by **Firebase**.
 
 ---
 
