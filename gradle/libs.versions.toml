@@ -53,5 +53,5 @@ firebase-config = { module = "com.google.firebase:firebase-config", version.ref 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.10" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.21" }
 
