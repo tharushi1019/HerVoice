@@ -22,7 +22,7 @@ glideCompiler = "4.16.0"
 firebaseMessaging = "24.1.1"
 firebaseCrashlytics = "19.4.2"
 firebasePerf = "21.0.5"
-firebaseConfig = "22.1.0"
+firebaseConfig = "22.1.2"
 
 [libraries]
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
