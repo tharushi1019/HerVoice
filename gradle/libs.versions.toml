@@ -32,7 +32,7 @@ ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitV
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.16.0-rc01" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.17.0-alpha01" }
 osmdroid = { module = "org.osmdroid:osmdroid-android", version = "6.1.20" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-auth" }
